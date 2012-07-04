@@ -23,6 +23,14 @@ my $obj = new_ok( 'Presentation' );
   						                          2 => abc2 } 
   						             }
   						 });
+  $obj->add_slide(
+  			content => { header => 'Topic A',
+  						 body   => { bullet => { a => 'look at the results',
+  						 						 b => '50% down',
+  						 						 c => 'how come' }
+  						 			}
+  						}
+  				);
   
   my $html = $obj->generate_html('../pres.html');
   ok( defined  $html, 'generate html' );

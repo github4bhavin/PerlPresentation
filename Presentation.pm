@@ -43,14 +43,14 @@ sub add_html_head {
 <style type="text/css">
 .slide{
 	background-color: #2f96b4;
-	width: 800px;
-	height: 800px;
+	width:800px;
+	height : 600px;
 	color : white;
 	box-shadow : 0 0 5px #999;
 }
 .slide_header {
    border-bottom: 1px solid #ccc;
-   font-size: 22px;
+   font-size: 40px;
    border-radius : 10px;
    box-shadow : 0 0 3px #999;
    padding : 5px;
@@ -60,7 +60,7 @@ sub add_html_head {
    border-top: 1px solid #ddd;
    border-radius : 10px;
    box-shadow : 0 0 3px #999;
-   font-size : 18px;
+   font-size : 30px;
 }
 .bullet_table, .bullet_no, .bullet_content {
    float : left;
@@ -68,12 +68,15 @@ sub add_html_head {
    margin  : 5px;
 }
 .bullet_no {
-
+	font-size : 30px;
 }
 .bullet_content {
+	font-size:30px;
 }
 .bullet_line {
-   
+   width : 90%;
+   border : 1px solid black;
+   float : left;
 }
 </style>
 STYLE
@@ -117,10 +120,12 @@ sub add_html_body {
   		$ms .= ' data-z="'. $self->{slides}->{$slide}->{'data-z'} .'"';  		  		
   		$ms .= ' data-scale="'. $self->{slides}->{$slide}->{'data-scale'} .'"';  		
   		$ms .= '>';
-  		$ms .= '<div class="slide_header" >' .$self->{slides}->{$slide}->{'content'}->{header} .'</div>';
+  		if ( $self->{slides}->{$slide}->{'content'}->{header} ) 
+  		{ $ms .= '<div class="slide_header" >' .$self->{slides}->{$slide}->{'content'}->{header} .'</div>'; }
 
   		if ( ref ($self->{slides}->{$slide}->{content}->{body}) eq 'SCALAR' )
-  		{ $ms .= '<div class="slide_body"   >' . $self->{slides}->{$slide}->{'content'}->{body} .'</div>' ;}
+  		{ $ms .= '<div class="slide_body"   >' . $self->{slides}->{$slide}->{'content'}->{body} .'</div>' ; 
+  		}
 
 
   		if ( ref ($self->{slides}->{$slide}->{content}->{body}->{bullet}) eq 'HASH' )
@@ -140,8 +145,7 @@ sub add_html_body {
 
 sub add_preview {
   my $self = shift;
-  my $hash;
-     $hash->{ class } = 'step';     
+  my $hash;    
      $hash->{ 'data-x' } = 0;
      $hash->{ 'data-y' } = 0;
      $hash->{ 'data-z' } = 0;
@@ -150,7 +154,9 @@ sub add_preview {
      $hash->{ 'data-rotate-x' } = 0;
      $hash->{ 'data-rotate-y' } = 0;
      $hash->{ 'data-rotate-z' } = 0;
-     $hash->{ 'content'       } = '';
+     $hash->{ 'content'       }->{heaader} = '';     
+     $hash->{ 'class'         }  = 'step';
+     $hash->{ 'content'       }->{body} = '';
      $self->{ no_of_slides    }++;
      $self->{ slides }->{ $self->{ no_of_slides } } = $hash ;
 
