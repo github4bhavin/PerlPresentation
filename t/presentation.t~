@@ -19,10 +19,8 @@ my $obj = new_ok( 'Presentation' );
  
   $obj->add_slide(
   			content=>{ header => 'Introduction' ,
-  						  body   => { bullet => { 1 => abc1 ,
-  						                          2 => abc2 } 
-  						             }
-  						 });
+  						  body   => { 1 => abc1 ,
+  						              2 => abc2 } });
   
   my $html = $obj->generate_html('../pres.html');
   ok( defined  $html, 'generate html' );

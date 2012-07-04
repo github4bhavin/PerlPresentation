@@ -29,6 +29,8 @@ sub add_slide {
      $hash->{ 'data-rotate-x' } ||= 0;
      $hash->{ 'data-rotate-y' } ||= 0;
      $hash->{ 'data-rotate-z' } ||= 0;
+     $hash->{'content'}->{header}= undef if ref ($hash->{'content'}->{header})  ne 'SCALAR';
+     print '+++++' . $hash->{'content'}->{header};
      $hash->{ 'content' }->{header} ||= 'Header slide'.$self->{ no_of_slides};
      $hash->{ 'content' }->{body}   ||= 'slide body';
      $self->{ no_of_slides }++;
