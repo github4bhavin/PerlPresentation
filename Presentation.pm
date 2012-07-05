@@ -39,48 +39,11 @@ sub add_slide {
 
 sub add_html_head {
   my $self = shift;
-     $self->{html}->{head} = <<STYLE
-<style type="text/css">
-.slide{
-	background-color: #2f96b4;
-	width:800px;
-	height : 600px;
-	color : white;
-	box-shadow : 0 0 5px #999;
-}
-.slide_header {
-   border-bottom: 1px solid #ccc;
-   font-size: 40px;
-   border-radius : 10px;
-   box-shadow : 0 0 3px #999;
-   padding : 5px;
-}
-.slide_body {
-   padding : 5px;
-   border-top: 1px solid #ddd;
-   border-radius : 10px;
-   box-shadow : 0 0 3px #999;
-   font-size : 30px;
-}
-.bullet_table, .bullet_no, .bullet_content {
-   float : left;
-   padding : 5px;
-   margin  : 5px;
-}
-.bullet_no {
-	font-size : 30px;
-}
-.bullet_content {
-	font-size:30px;
-}
-.bullet_line {
-   width : 90%;
-   border : 1px solid black;
-   float : left;
-}
-</style>
-STYLE
-;     
+  my $css = new Presentation::CSS();
+     $css->class_slide({
+     			'background-color' => 'black'
+     		});
+     $self->{html}->{head} = '<style type="text/css">' . $css->generate_style() . '</style>';     
 
 }
 
