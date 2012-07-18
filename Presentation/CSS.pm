@@ -20,9 +20,9 @@ sub new{
 # %class_slide class_slide({ppty=>val})
 sub class_slide {
   my $self = shift;
+     return $self->{slide} unless @_;
      $self->{slide}= {@_};
-     return $self->{slide};
-     return $self->{slide} unless $_;
+     
 }
 
 # %class_slide_header class_slide_header({ppty=>val})
@@ -69,7 +69,18 @@ sub class_bullet_line {
 
 sub generate_style {
   my $self = shift;
-  return    $self->class_slide();
+  my $css = '';
+  my ($slideH )= ( $self->class_slide() );
+  
+     #__slide class
+     $css .= '.slide { ';
+     foreach my $key ( keys %$lideH ) {
+  		$css .= $key . ":" . $slideH->{$key} .';' ;
+     }
+     $css .= '}';
+  
+     #__
+  
 }
 
 1;
