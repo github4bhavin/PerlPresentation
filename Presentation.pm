@@ -1,4 +1,5 @@
 package Presentation;
+use Presentation::CSS;
 our $VERSION = '0.1';
 sub new {
  my $class = shift;
@@ -7,6 +8,7 @@ sub new {
 	$self->{ title        } ||= 'untitled0';
 	$self->{ no_of_slides } ||= 0;
 	$self->{ impressJS    } ||= 'JS/impress.js';
+	$self->{ jqueryJS     } ||= 'JS/jquery.js';
 	$self->{ html         } = { head =>'', body=> '' , script =>''};
 	$self->{ class } = 'slide step';
 	$self->{ slides };
@@ -40,11 +42,8 @@ sub add_slide {
 sub add_html_head {
   my $self = shift;
   my $css = new Presentation::CSS();
-     $css->class_slide({
-     			'background-color' => 'black'
-     		});
-     $self->{html}->{head} = '<style type="text/css">' . $css->generate_style() . '</style>';     
-
+     $self->{html}->{head} = '<style type="text/css">' . $css->css_type( 'simple' )->generate_style() . '</style>';     
+	 $self->{html}->{head} = $self->{html}->{head} . '<style>.body{background-color:#ccc;}</style>';
 }
 
 sub apply_type {
@@ -137,6 +136,7 @@ sub generate_html {
         </head>
         <body> $self->{html}->{body}
         <script src="$self->{impressJS}"></script>
+        <script src="$self->{jqueryJS}"></script>
         <script>impress().init();</script>
         </body>
    </html>

@@ -23,14 +23,17 @@ my $obj = new_ok( 'Presentation' );
   						                          2 => abc2 } 
   						             }
   						 });
+  foreach my $i ( 1 .. 10 ) {						 
   $obj->add_slide(
-  			content => { header => 'Topic A',
-  						 body   => { bullet => { a => 'look at the results',
-  						 						 b => '50% down',
-  						 						 c => 'how come' }
+  			content => { header => 'Slide '.$i,
+  						 body   => { bullet => { '1' => 'look at the results',
+  						 						 '2' => '50% down',
+  						 						 '3' => 'how come',
+  						 						 '4' => 'abc' }
   						 			}
   						}
   				);
+  	}			
   
   my $html = $obj->generate_html('../pres.html');
   ok( defined  $html, 'generate html' );
