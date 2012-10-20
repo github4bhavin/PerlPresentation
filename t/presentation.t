@@ -19,17 +19,26 @@ my $obj = new_ok( 'Presentation' );
  
   $obj->add_slide(
   			content=>{ header => 'Introduction' ,
-  						  body   => { bullet => { 1 => abc1 ,
-  						                          2 => abc2 } 
+  						  body   => { bullet => ( 1 => abc1 ,
+  						                          2 => abc2 ) 
   						             }
   						 });
   foreach my $i ( 1 .. 10 ) {						 
   $obj->add_slide(
   			content => { header => 'Slide '.$i,
-  						 body   => { bullet => { '1' => 'look at the results',
-  						 						 '2' => '50% down',
-  						 						 '3' => 'how come',
-  						 						 '4' => 'abc' }
+  						 body   => { bullet => {  numbered => 1,
+  						                          data => (  'look at the results',
+  						 						             '50% down',
+  						 						             'how come',
+  						 						             'abc' 
+  						 						          )
+  						 						},
+  						 			 bullet => { symbol => '*',
+  						 			             data => ( 'point1', 
+  						 			                       'point2'
+  						 			                      )
+  						 			           }
+  						 						
   						 			}
   						}
   				);
